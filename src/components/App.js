@@ -6,11 +6,13 @@ function App() {
   let [pos, setPos] = React.useState(-1);
 
   const update = () => {
-    let data = document.getElementById("task").value;
+    let data;
     let k = [...arr];
+    data = document.getElementById("task").value;
+    data = data.trim();
     if (pos === -1) {
       let k1 = Date.now();
-      if (data.length === 0) {
+      if (data === "") {
         return;
       }
       let obj = {
@@ -19,7 +21,9 @@ function App() {
       };
       k.push(obj);
       setArr(k);
-    } else {
+    } else if (pos !== -1) {
+      data = document.getElementById("text" + arr[pos].uid).value;
+      data = data.trim();
       if (data === "") {
         return;
       }
@@ -27,15 +31,15 @@ function App() {
         info: data,
         uid: arr[pos].uid
       };
-      let newarray = arr;
-      newarray[pos] = obj;
-      setArr(newarray);
-      setPos(-1);
+      k[pos] = obj;
+      setArr(k);
     }
+    setPos(-1);
     document.getElementById("task").value = "";
   };
 
   const handleEdit = (id) => {
+    document.getElementById("t" + id).classList.remove("non");
     let k = -1;
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].uid === id) {
@@ -44,7 +48,6 @@ function App() {
       }
     }
     setPos(k);
-    document.getElementById("task").value = arr[k].info;
   };
 
   const handleDelete = (id) => {
@@ -58,15 +61,22 @@ function App() {
   };
 
   const Get = ({ info, ke }) => {
+    let textid = "text" + ke;
     return (
       <div className="list" key={ke}>
         <p>{info}</p>
-        <button onClick={() => handleEdit(ke)} id={ke}>
+        <button className="editTask" onClick={() => handleEdit(ke)}>
           edit
         </button>
-        <button onClick={() => handleDelete(ke)} id={ke}>
+        <button className="delete" onClick={() => handleDelete(ke)}>
           Delete
         </button>
+        <div id={"t" + ke} className="non">
+          <textarea id={textid}></textarea>
+          <button className="saveTask" onClick={update}>
+            SaveTask
+          </button>
+        </div>
       </div>
     );
   };
