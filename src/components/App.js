@@ -4,6 +4,7 @@ import "./../styles/App.css";
 function App() {
   let [arr, setArr] = React.useState([]);
   let [pos, setPos] = React.useState(-1);
+
   const update = () => {
     let data = document.getElementById("task").value;
     let k = [...arr];
@@ -33,6 +34,7 @@ function App() {
     }
     document.getElementById("task").value = "";
   };
+
   const handleEdit = (id) => {
     let k = -1;
     for (let i = 0; i < arr.length; i++) {
@@ -44,6 +46,7 @@ function App() {
     setPos(k);
     document.getElementById("task").value = arr[k].info;
   };
+
   const handleDelete = (id) => {
     let newarray = [];
     for (let i = 0; i < arr.length; i++) {
@@ -53,6 +56,7 @@ function App() {
     }
     setArr(newarray);
   };
+
   const Get = ({ info, ke }) => {
     return (
       <div className="list" key={ke}>
@@ -66,6 +70,7 @@ function App() {
       </div>
     );
   };
+
   return (
     <>
       <div id="main">
