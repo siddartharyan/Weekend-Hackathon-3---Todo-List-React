@@ -10,7 +10,7 @@ function App() {
     let k = [...arr];
     data = document.getElementById("task").value;
     data = data.trim();
-    if (pos === -1) {
+    if (pos === -1 || data !== "") {
       let k1 = Date.now();
       if (data === "") {
         return;
@@ -47,6 +47,7 @@ function App() {
         break;
       }
     }
+    document.getElementById("text" + id).value = arr[k].info;
     setPos(k);
   };
 
@@ -56,6 +57,9 @@ function App() {
       if (arr[i].uid !== id) {
         newarray.push(arr[i]);
       }
+    }
+    if (newarray.length === 0) {
+      setPos(-1);
     }
     setArr(newarray);
   };
