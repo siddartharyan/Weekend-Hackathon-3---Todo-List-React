@@ -22,10 +22,10 @@ export default function Get({
           data.infor
         )}
       </li>
-      <button onClick={() => handleDelete(data.uid)} className="edit">
+      <button onClick={() => handleDelete(data.uid)} className="delete">
         Delete
       </button>
-      <button onClick={() => handleEdit(data.uid)} className="delete">
+      <button onClick={() => handleEdit(data.uid)} className="edit">
         edit
       </button>
     </>
