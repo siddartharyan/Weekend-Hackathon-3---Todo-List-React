@@ -68,17 +68,17 @@ function App() {
     setInfo("");
   };
 
-  const Other = ({ val }) => {
+  const Other = () => {
     return (
       <>
         <input
           onChange={handleEditChange}
           type="string"
           className="editTask"
-          value={val}
+          value={editItem}
         />
         <button
-          disabled={val === ""}
+          disabled={editItem === ""}
           onClick={() => handleSave()}
           className="saveTask"
         >
@@ -91,11 +91,13 @@ function App() {
   const Get = ({ data }) => {
     return (
       <>
-        <li className="list">
-          {index === data.uid ? <Other val={editItem} /> : data.infor}
-        </li>
-        <button onClick={() => handleDelete(data.uid)}>Delete</button>
-        <button onClick={() => handleEdit(data.uid)}>edit</button>
+        <li className="list">{index === data.uid ? <Other /> : data.infor}</li>
+        <button onClick={() => handleDelete(data.uid)} className="edit">
+          Delete
+        </button>
+        <button onClick={() => handleEdit(data.uid)} className="delete">
+          edit
+        </button>
       </>
     );
   };
