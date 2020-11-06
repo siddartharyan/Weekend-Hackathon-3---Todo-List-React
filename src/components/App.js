@@ -100,13 +100,15 @@ function App() {
     );
   };
   return (
-    <div id="main">
-      <textarea id="task" onChange={handleChange} value={info}></textarea>
-      <button onClick={handleClick}>Add</button>
+    <>
+      <div id="main">
+        <textarea id="task" onChange={handleChange} value={info}></textarea>
+        <button onClick={handleClick}>Add</button>
+      </div>
       {items.map((ele) => (
-        <Get key={ele.uid} data={ele} editItem={editItem} />
+        <Get key={ele.uid} data={ele} />
       ))}
-    </div>
+    </>
   );
 }
 export default App;
