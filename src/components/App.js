@@ -103,7 +103,9 @@ function App() {
     <>
       <div id="main">
         <textarea id="task" onChange={handleChange} value={info}></textarea>
-        <button onClick={handleClick}>Add</button>
+        <button id="btn" onClick={handleClick}>
+          Add
+        </button>
       </div>
       {items.map((ele) => (
         <Get key={ele.uid} data={ele} />
